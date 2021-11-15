@@ -1,8 +1,10 @@
 package HomeWork11;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class HW3 extends BaseTest {
     @Before
@@ -20,7 +22,11 @@ public class HW3 extends BaseTest {
         driver.findElement(By.xpath("//input[@id='email']")).sendKeys("abc@yahoo.com");
         driver.findElement(By.xpath("//input[@id='passwd']")).sendKeys("fcr");
         driver.findElement(By.xpath("//button[@id='SubmitLogin']")).click();
-
+        String expectedMessage = "There is 1 error";
+        WebElement message = driver.findElement(By.xpath("//p[contains(text(),'There is 1 error')]"));
+        String actualMessage = message.getText();
+        Assert.assertEquals(expectedMessage, actualMessage);
+        System.out.println(message.getText());
 
     }
 
